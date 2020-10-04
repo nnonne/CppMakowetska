@@ -1,20 +1,22 @@
+
 #include <iostream>
+
 int main()
 {
     std::cout << "Enter numbers:" << std::endl;
     double a,b;
     std::cin >> a;
     std::cin >> b;
-    if (abs(a) == abs(b)){
-        std::cout << "absolute value of numbers are idential" << std::endl;
+    if (a == b){
+        std::cout << "numbers are idential" << std::endl;
     }
-    else if (abs(a) < abs(b)) {
-        std::cout <<"absolute value of " << b << " is bigger" << std::endl;
-        std::cout <<"absolute value of " << a << " is smaller" << std::endl;
+    else if (a<b) {
+        std::cout << b << " is bigger" << std::endl;
+        std::cout << a << " is smaller" << std::endl;
     }
-    else if (abs(a) > abs(b)) {
-        std::cout <<"absolute value of " << a << " is bigger" << std::endl;
-        std::cout <<"absolute value of " << b << " is smaller" << std::endl;
+    else if (a>b) {
+        std::cout << a << " is bigger" << std::endl;
+        std::cout << b << " is smaller" << std::endl;
     }
     
 
