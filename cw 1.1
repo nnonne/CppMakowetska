@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main(){
+    int a, a1,a2,a3,b1,c1;
+    printf("vvedit chislo\n");
+    scanf("%d", &a);
+    printf("punkt a\n");
+    a1 = a%10;
+    a2 = ((a-a1)%100)/10;
+    a3 = a/100;
+    printf("%d\n",a1);
+    printf("%d\n",a2);
+    printf("%d\n",a3);
+    printf("punkt b\n");
+    b1=a1+a2+a3;
+    printf("%d\n",b1);
+    printf("punkt c\n");
+    c1=a3*100+a2*10+a1;
+    printf("%d\n",c1);
+}
