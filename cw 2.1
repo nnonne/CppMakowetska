@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdbool.h> 
+
+bool f1(int n) {
+    return n % 2 == 0;
+}
+
+bool f2(int n, int m) {
+    return n % m == 0;
+}
+bool f3(int n){
+    return n % 10 == 0;
+}
+int main()
+{
+    int a,b,c;
+    scanf("%d", &a);
+    scanf("%d", &b);
+    scanf("%d", &c);
+    bool even_n = f1(a);
+    printf("пункт a\n");
+    printf("%d\n", even_n);
+    bool d = f2(a,b);
+    printf("пункт б\n");
+    printf("%d\n", d);
+    bool n = f3(c);
+    printf("пункт в\n");
+    printf("%d\n", n);
+    return 0;
+}
