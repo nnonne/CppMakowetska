@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+
+double pleakyReLu(double x,double a){
+    double f;
+    if (x<0) f = a*x;
+    else f = 0;
+    return f;
+}
+double derivative(double x,double a){
+    double d;
+    if (x<0) d = a;
+    else d = 0;
+    return d;
+}
+int main(){
+    double x, a, f, d;
+    printf("vvedit x,a\n");
+    scanf("%lf",&x);
+    scanf("%lf",&a);
+    f = pleakyReLu(x,a);
+    d = derivative(x,a);
+    printf("%lf\n",f);
+    printf("%lf\n",d);
+    return 0;
+}

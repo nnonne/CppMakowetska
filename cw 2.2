@@ -1,0 +1,24 @@
+
+#include <iostream>
+
+int main()
+{
+    std::cout << "Enter numbers:" << std::endl;
+    double a,b;
+    std::cin >> a;
+    std::cin >> b;
+    if (a == b){
+        std::cout << "numbers are idential" << std::endl;
+    }
+    else if (a<b) {
+        std::cout << b << " is bigger" << std::endl;
+        std::cout << a << " is smaller" << std::endl;
+    }
+    else if (a>b) {
+        std::cout << a << " is bigger" << std::endl;
+        std::cout << b << " is smaller" << std::endl;
+    }
+    
+
+    return 0;
+}
