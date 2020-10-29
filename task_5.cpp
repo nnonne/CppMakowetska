@@ -3,9 +3,9 @@ int main(){
     int n;
     std :: cout << "input n" <<  std :: endl;
     std :: cin >> n;
-    std :: cout << "n! = ";
-    for (int i = 1;i < n; i++){
-    std :: cout << i << "*";
+    int ans = 1;
+    for (int i = 1;i <= n; i++){
+    ans *= i;
     }
-    std :: cout << n;
+    std :: cout << ans;
 }

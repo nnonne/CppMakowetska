@@ -3,9 +3,12 @@ int main(){
     int n;
     std :: cout << "input n" <<  std :: endl;
     std :: cin >> n;
-    std :: cout << "n! = ";
-    for (int i = 1;i < n; i++){
-    std :: cout << i << "*";
+    int ans = 1;
+    int k = 0;
+    do{
+        ans *= 2;
+        k ++;
     }
-    std :: cout << n;
+    while (ans <= n);
+    std :: cout << k;
 }
