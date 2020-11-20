@@ -1,43 +1,38 @@
 #include <stdio.h>
 
-void ent(int n, double* arr){
-    for (int i = 0; i<n; i++){
-        printf("\narr[%d] = ",i);
-        scanf("%lf",&arr[i]);
-    }
-}
-void prnt(int n,const double* arr){
+int main(){
+    int n,m,k;
+    printf("n = ");
+    scanf("%d",&n);
+    printf("m = ");
+    scanf("%d",&m);
+    float matr[n][m];
     for (int i = 0; i < n; i++){
-        printf("arr[%d] = %lf ",i,arr[i]);
+        for (int j = 0; j < m; j++){
+            printf("matrix(%d,%d) = ",i,j);
+            scanf("%f",&matr[i][j]);
+        }
+    }
+    float matr2[n][m];
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
+            matr2[i][j] = matr[n - i-1][j];
+            printf("%f\n  ",matr[i][j]);
+            }
+        }
+    printf("your matrix: ");
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
+            printf("%f  ",matr[i][j]);
     }
     printf("\n");
-}
-void suma(int n,const double* arr1, const double* arr2,double* a){
-    for (int i = 0; i < n; i++){
-        a[i] = arr1[i] + arr2[i];
     }
-
-}
-double prod(int n,const double* arr1, const double* arr2){
-    double pr = 0;
+    printf("my matrix: ");
     for (int i = 0; i < n; i++){
-        pr += arr1[i] * arr2[i];
+        for (int j = 0; j < m; j++){
+            printf("%f  ",matr2[i][j]);
     }
-    return pr;
+    printf("\n");
+    }
 }
-int main(){
-    const size_t size = 5;
-    double arr1[size],arr2[size],arr3[size];
-    printf("enter array 1: \n");
-    ent(size, arr1);
-    prnt(size,arr1);
-    printf("enter array 2: \n");
-    ent(size, arr2);
-    prnt(size,arr2);
-    suma(size,arr1,arr2,arr3);
-    printf("suma: ");
-    prnt(size,arr3);
-    double dob = prod(size,arr1,arr2);
-    printf("prod = %lf",dob);
 
-}
