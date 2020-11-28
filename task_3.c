@@ -1,51 +1,39 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-typedef struct MyStack{
-    int data;
-    struct MyStack *ptr;
-}MyStack;
-int is2(int x){
-    int st = 1;
-    while (st < x){
-        st *= 2;
-    }
-    if (st == x){
-        return 1;
-    }
-    else return 0;
-}
-int is3(int x){
-    int st = 1;
-    while (st < x){
-        st *= 3;
-    }
-    if (st == x){
-        return 1;
-    }
-    else return 0;
-}
 int main(){
-    int x;
-    MyStack* p = NULL;
-    MyStack* z;
-    int c2 = 0, c3 = 0;
-    do{
-        scanf("%d",&x);
-        if (is2(x)) c2 ++;
-        if (is3(x)) c3 ++;
-        z = (MyStack*) malloc(sizeof(MyStack));
-        z -> data = x;
-        z -> ptr = p;
-        p = z;
-    }while(x != 0);
-    printf("you have entered: \n");
-    while(p){
-        z = p;
-        printf("%d ", p -> data);
-        p = p -> ptr;
-        free(z);
+    char a[100] = "some text, (text in) ";
+    char b[100];
+    int k = 0, i = 0;
+    int state = 0;
+    while (i < strlen(a)){
+        if (a[i] == '('){
+            if (state == 0) state == 1;
+            else{
+                printf("wrong string");
+                return 1;
+            }
+        }
+        if (a[i] == ')'){
+            if (state == 1) {
+                state == 0;
+            }
+        }
+        i++;
     }
-    printf(" c2 = %d, c3 = %d", c2,c3);
-
+    if (state == 1){
+        printf("wrong string");
+        return 3;
+    }
+    for(int i = 0; i < strlen(a); ++i ){
+        if (a[i] == '(') state = 1;
+        if (a[i] == ')'){
+           state = 0;
+           continue;
+        }
+        if (state == 0) b[k++] = a[i];
+    }
+    b[k++] = 0;
+    printf("%s",b);
 }
+
