@@ -1,39 +1,45 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define N 100
 
 int main(){
-    char a[100] = "some text, (text in) ";
-    char b[100];
-    int k = 0, i = 0;
-    int state = 0;
-    while (i < strlen(a)){
-        if (a[i] == '('){
-            if (state == 0) state == 1;
-            else{
-                printf("wrong string");
-                return 1;
-            }
-        }
-        if (a[i] == ')'){
-            if (state == 1) {
-                state == 0;
-            }
-        }
-        i++;
+    char * fname1 = "myfile1";
+    char * fname2 = "myfile2";
+    FILE *fp1 = fopen(fname1,"rt");
+    FILE *fp2 = fopen(fname2,"rt");
+    char *fname3 = "myfile3";
+    FILE *fp3 = fopen(fname3,"wt");
+    if (fp2 == NULL || fp2 == NULL || fp2 == NULL){
+        printf("can't open file");
+        return -1;
     }
-    if (state == 1){
-        printf("wrong string");
-        return 3;
+    char c;
+    int k1 = 0, k2 = 0 ;
+    char mas1[N],  mas2[N];
+    while (!feof(fp1)){
+        c = fgetc(fp1);
+        mas1[k1] = (char) c;
+        k1++;
     }
-    for(int i = 0; i < strlen(a); ++i ){
-        if (a[i] == '(') state = 1;
-        if (a[i] == ')'){
-           state = 0;
-           continue;
-        }
-        if (state == 0) b[k++] = a[i];
+    while (!feof(fp2)){
+        c = fgetc(fp2);
+        mas2[k2] = (char) c;
+        k2++;
     }
-    b[k++] = 0;
-    printf("%s",b);
+    fclose(fp1);
+    fclose(fp2);
+    for (int i = 0; i < k1-1; ++i){
+        fprintf(fp3,"%c",mas1[i]);
+
+    }
+    fprintf(fp3,"%c",'\n');
+    for (int i = 0; i < k2-1; ++i){
+        fprintf(fp3,"%c",mas2[i]);
+
+    }
+    fclose(fp3);
 }
 
