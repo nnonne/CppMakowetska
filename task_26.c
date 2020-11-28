@@ -1,66 +1,36 @@
 #include <stdio.h>
+#include <string.h>
 
-float maximum(int n,float* arr){
-    double m = arr[0];
-    for (int j = 0; j <= n; j++){
-        if ( m < arr[j]){
-            m = arr[j];
-        }
-    }
-    return m;
-}
-float minimum(int n,float* arr){
-    double m = arr[0];
-    for (int j = 0; j <= n; j++){
-        if ( m > arr[j]){
-            m = arr[j];
-        }
-    }
-    return m;
-}
 int main(){
-    int n,m;
-    printf("n = ");
-    scanf("%d",&n);
-    printf("m = ");
-    scanf("%d",&m);
-    float minn[n], maxx[n];
-    float matr[n][m],matr2[n][m];
-    for (int i = 0; i < n; i++){
-        float mas[m];
-        for (int j = 0; j < m; j++){
-            printf("matrix(%d,%d) = ",i,j);
-            scanf("%f",&matr[i][j]);
-            matr2[i][j] = matr[i][j];
-            mas[j] = matr[i][j];
-        }
-        minn[i] = minimum(m,mas);
-        maxx[i] = maximum(m,mas);
-    }
-    float mymin = minimum(n,minn), mymax = maximum(n,maxx);
-    int mni = 0, mxi = 0;
-    for (int i = 0; i < n; i++){
-        for (int j = 0; j < m; j++){
-            if (matr[i][j] == mymin){
-                mni = i;
-            }
-            else if (matr[i][j] == mymax){
-                mxi = i;
-            }
-            if (mni != mxi){
-                for (int j = 0; j < m; j++){
-                matr2[mni][j] = matr[mxi][j];
-                matr2[mxi][j] = matr[mni][j];
-                }
+    char t[100] = "76543210123";
+    char a[100];
+    int amount = -1, count = 0;
+    for(int i = 1; i < strlen(t); ++i ){
+        int k = i-1;
+        count = 0;
+        if (t[i] - t[i+1] == -1){
+            while(t[k] - t[k+1] == -1){
+                count +=1;
+                k ++;
             }
         }
+        if (t[i] - t[i+1] == 1){
+            k = i-1;
+            while(t[k] - t[k+1] == 1 ){
+                count ++;
+                k ++;
+            }
+        }
+        if (count > amount){
+            amount = count+1;
+            char a[count+1];
+            for (int j = 0; j < count+1; j++){
+                a[j] = t[i+j-1];
+            }
+            a[count+1] ='\0';
+            printf("%s\n",a);
+        }
     }
-    printf("my matrix: \n");
-    for (int i = 0; i < n; i++){
-        for (int j = 0; j < m; j++){
-            printf("%f  ",matr2[i][j]);
-    }
-    printf("\n");
-    }
+    a[count] = 0;
 }
 
