@@ -1,45 +1,56 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
 
-#define N 100
+typedef struct Ratio{
+    int num;
+    unsigned int denum;
+}Ratio;
+
+int input(Ratio * x){
+    scanf(" %d",&x -> num);
+    scanf(" %u", &x -> denum);
+    return 0;
+}
+void output(const Ratio x){
+    printf("R = %d / %u \n",x.num,x.denum);
+}
+unsigned gcd(unsigned a,unsigned b){
+    if (a == 0) return b;
+    if (b == 0) return a;
+    if (a > b) return gcd(b,a%b);
+    else return gcd(a,b%a);
+}
+Ratio reduce(Ratio x){
+    Ratio z;
+    unsigned d = gcd(x.num, x.denum);
+    z.num = x.num / d;
+    z.denum = x.denum / d;
+    return z;
+}
+Ratio add(Ratio a, Ratio b){
+    Ratio c;
+    c.num = (int)(a.num * b.denum + b.num * a.denum);
+    c.denum  = a.denum * b.denum;
+    return reduce(c);
+}
+Ratio division(Ratio a, Ratio b){
+    Ratio c;
+    c.num = (int)(a.num * b.num);
+    c.denum  = a.denum * b.denum;
+    return reduce(c);
+}
+
 
 int main(){
-    char * fname1 = "myfile1";
-    char * fname2 = "myfile2";
-    FILE *fp1 = fopen(fname1,"rt");
-    FILE *fp2 = fopen(fname2,"rt");
-    char *fname3 = "myfile3";
-    FILE *fp3 = fopen(fname3,"wt");
-    if (fp2 == NULL || fp2 == NULL || fp2 == NULL){
-        printf("can't open file");
-        return -1;
-    }
-    char c;
-    int k1 = 0, k2 = 0 ;
-    char mas1[N],  mas2[N];
-    while (!feof(fp1)){
-        c = fgetc(fp1);
-        mas1[k1] = (char) c;
-        k1++;
-    }
-    while (!feof(fp2)){
-        c = fgetc(fp2);
-        mas2[k2] = (char) c;
-        k2++;
-    }
-    fclose(fp1);
-    fclose(fp2);
-    for (int i = 0; i < k1-1; ++i){
-        fprintf(fp3,"%c",mas1[i]);
-
-    }
-    fprintf(fp3,"%c",'\n');
-    for (int i = 0; i < k2-1; ++i){
-        fprintf(fp3,"%c",mas2[i]);
-
-    }
-    fclose(fp3);
+    Ratio x,y,z;
+    input(&x);
+    //output(x);
+    input(&y);
+    //output(y);
+    z = add(x,y);
+    output(z);
+    z = division(x,y);
+    output(z);
 }
+
+
 

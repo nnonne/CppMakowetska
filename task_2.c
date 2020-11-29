@@ -1,27 +1,40 @@
 #include <stdio.h>
-#include <ctype.h>
+#include <stdbool.h>
+typedef
+struct Field{
+    char col;
+    int row;
+}Field;
 
-int main(){
-    char * fname = "myfile";
-    FILE *fp;
-    char c;
-    int isdig = 1;
-    int mydig;
-    fp = fopen(fname,"rt");
-    for (int i = 0; i < 2; i++){
-        c = fgetc(fp);
-        if (!isdigit(c)){
-            isdig = 0;
-            //break;
-        }
-    }
-    if (isdig){
-        if (c % 2  == 0) printf("digit is even");
-        else printf("digit is odd");
-    }
-    else printf("it is not a digit with two ciphers");
-    fclose(fp);
-
+int input(Field * x){
+    Field  res;
+    int r;
+    printf(" column = ");
+    scanf(" %c",&x -> col);
+    printf(" row = ");
+    scanf(" %d",&x -> row);
+    //res.row = r;
+    //*x = res;
+    return 0;
+}
+void output(const Field x){
+    printf("%C : %u \n",x.col,x.row);
+}
+bool check(Field x, Field y){
+    if (x.col == y.col) return true;
+    if (x.row == y.row) return true;
+    if (x.col - y.col == x.row - y.row ) return true;
+    return false;
 }
 
+int main(){
+   Field x;
+   Field y;
+   input(&x);
+   output(x);
+   input(&y);
+   output(y);
+   if (check(x,y)) printf("correct");
+   else printf("uncorrect");
+}
 
