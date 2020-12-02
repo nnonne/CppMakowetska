@@ -1,42 +1,55 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
 
-#define N 100
-int main(){
-    char mas[N];
-    char * fname = "myfile";
-    FILE *fp;
-    char c;
-    int k = 0;
-
-    fp = fopen(fname,"rt");
-    while (!feof(fp)){
-        c = fgetc(fp);
-        mas[k] = (char) c;
-        k++;
+int input(int * arr, size_t n, char * fname){
+    FILE* fp = fopen(fname, "wb");
+    if (fp == NULL){
+        printf("error\n");
+        return -1;
     }
-    for (int i = 0; i < k-1; ++i){
-        printf("%c",mas[i]);
-    }
-    printf("\n");
+    fwrite(arr,n,sizeof(arr[0]),fp);
     fclose(fp);
-    FILE *fp1;
-    char fname2[20];
-    strcpy(fname2,fname);
-    strcat(fname2,(char*)"_lower.txt");
-    printf("f = %s",fname2);
-    fp1 = fopen(fname2,"wt");
-    for (int i = 0; i < k-1; ++i){
-        if(isupper(mas[i])){
-            fputc(tolower(mas[i]),fp1);
-        }
-        else {
-            fprintf(fp,"%c",mas[i]);
-        }
+    return EXIT_SUCCESS;
+}
+int output(const char * fname){
+    FILE* fp = fopen(fname, "rb");
+    if (fp == NULL){
+        printf("error\n");
+        return -1;
     }
-    fclose(fp1);
+    while (!feof(fp)){
+        int item;
+        char res = fread(&item,1,sizeof(item),fp);
+        if (res == 0) break;
+        printf("%d\n",item);
+    }
+    fclose(fp);
+    return EXIT_SUCCESS;
+}
+int append(const int * arr,size_t n, const char * fname){
+    FILE* fp = fopen(fname, "ab");
+    if (fp == NULL){
+        printf("error\n");
+        return -1;
+    }
+    for (size_t i = 0; i < n; i++){
+        fwrite(&arr[i],1,sizeof(arr[i]),fp);
+    }
+    fclose(fp);
+    return EXIT_SUCCESS;
 }
 
-
+int main(){
+    char fname[10] = "myfile";
+    int ar[10];
+    int n;
+    printf(" n = ");
+    scanf("%d",&n);
+    for (int i = 0; i < n; ++i){
+        printf("ar[%d] = ",i);
+       scanf("%d",&ar[i]);
+    }
+    input(ar,n,fname);
+    append(ar,n,fname);
+    output(fname);
+}
