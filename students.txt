@@ -1,0 +1,10 @@
+number0 student0 60 60 70 85 | 3 3 3 4
+number1 student1 100 100 100 100 | 5 5 5 5
+number2 student2 90 90 90 100 | 5 5 5 5
+number3 student3 75 75 75 75 | 4 4 4 4
+number4 student4 75 80 80 75 | 4 4 4 4
+number5 student5 100 95 97 88 | 5 5 5 4
+number6 student6 67 89 78 75 | 3 4 4 4
+number7 student7 100 99 98 97 | 5 5 5 5
+number8 student8 60 60 60 60 | 3 3 3 3
+number9 student9 75 75 80 80 | 4 4 4 4
